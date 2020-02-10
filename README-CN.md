@@ -5,7 +5,7 @@ NEcho 是个易于使用的用于控制控制台格式化输出的工具库。
 - [English Readme](https://github.com/zmjack/NEcho/blob/master/README.md)
 - [中文自述](https://github.com/zmjack/NEcho/blob/master/README-CN.md)
 
-
+<br/>
 
 ## 使用示例
 
@@ -19,7 +19,7 @@ Echo.Line("Welcome to use NEcho")
 > Welcome to use NEcho  
 >+==++==++==++==++==++==+
 
-
+<br/>
 
 ### 文本输出
 
@@ -53,7 +53,7 @@ Echo.Row(new[] { "ColA", "ColB" }, new[] { 10, 20 });
 
 ---
 
-
+<br/>
 
 ### 表格输出
 
@@ -94,7 +94,7 @@ Echo.SeamlessTable(
 
 ---
 
-
+<br/>
 
 ### 输入交互
 
