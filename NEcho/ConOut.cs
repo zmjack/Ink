@@ -156,9 +156,19 @@ namespace NEcho
             return this;
         }
 
+        public ConOut Ask(string question, Action<string> method)
+        {
+            new ConAsk(this, question, new ConAsk.ResolveDelegate(answer =>
+            {
+                method(answer);
+                return answer;
+            })).Resolve();
+            return this;
+        }
+
         public ConOut AskYN(string question, Func<bool, string> resolver)
         {
-            new ConAsk(this, question, new ConAsk.ResolveDelegate((answer) =>
+            new ConAsk(this, question, new ConAsk.ResolveDelegate(answer =>
             {
                 if (new[] { "y", "yes", "Y", "Yes", "YES" }.Contains(answer))
                     return resolver(true);
@@ -171,7 +181,7 @@ namespace NEcho
         }
         public ConOut AskYN(string question, Action<bool> method)
         {
-            new ConAsk(this, question, new ConAsk.ResolveDelegate((answer) =>
+            new ConAsk(this, question, new ConAsk.ResolveDelegate(answer =>
             {
                 if (new[] { "y", "yes", "Y", "Yes", "YES" }.Contains(answer))
                 {
@@ -191,7 +201,7 @@ namespace NEcho
         public ConOut AskYN(string question, out bool ret)
         {
             bool _ret = false;
-            new ConAsk(this, question, new ConAsk.ResolveDelegate((answer) =>
+            new ConAsk(this, question, new ConAsk.ResolveDelegate(answer =>
             {
                 if (new[] { "y", "yes", "Y", "Yes", "YES" }.Contains(answer))
                 {
