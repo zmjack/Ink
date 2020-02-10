@@ -51,8 +51,6 @@ Echo.Right("Right");
 Echo.Row(new[] { "ColA", "ColB" }, new[] { 10, 20 });
 ```
 
----
-
 <br/>
 
 ### 表格输出
@@ -91,8 +89,6 @@ Echo.SeamlessTable(
     },
     lengths : new[] { 10, 20 });
 ```
-
----
 
 <br/>
 
