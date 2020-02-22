@@ -28,7 +28,7 @@ namespace NEcho
         public static string GetAlignConsoleLine(string[] cols, AlignLineOptions options)
         {
             if (options.Borders is null)
-                options.Borders = new[] { "", " ", "" };
+                options.Borders = new[] { "", "  ", "" };
 
             if (cols.Length != options.Lengths.Length)
                 throw new ArgumentException($"The length of the argument `{nameof(cols)}` and `{nameof(options.Lengths)}` must be same.");
