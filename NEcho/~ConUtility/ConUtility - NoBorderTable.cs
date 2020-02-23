@@ -51,7 +51,7 @@ namespace NEcho
             var options = new AlignLineOptions
             {
                 Lengths = lengths,
-                Borders = new[] { "", " ", "" },
+                Borders = new[] { "", "  ", "" },
                 TreatDBytesTableLineAsByte = false,
             };
 

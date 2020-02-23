@@ -12,7 +12,7 @@ namespace NEcho
         {
             public bool OverflowHidden { get; set; } = false;
             public bool TreatDBytesTableLineAsByte { get; set; } = false;
-            public string[] Borders { get; set; } = new[] { "", " ", "" };
+            public string[] Borders { get; set; } = new[] { "", "  ", "" };
             public int[] Lengths { get; set; } = null;
 
             public int GetCharLengthA(char ch)
@@ -27,9 +27,6 @@ namespace NEcho
 
         public static string GetAlignConsoleLine(string[] cols, AlignLineOptions options)
         {
-            if (options.Borders is null)
-                options.Borders = new[] { "", "  ", "" };
-
             if (cols.Length != options.Lengths.Length)
                 throw new ArgumentException($"The length of the argument `{nameof(cols)}` and `{nameof(options.Lengths)}` must be same.");
 
