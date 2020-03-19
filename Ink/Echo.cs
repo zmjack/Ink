@@ -1,8 +1,8 @@
-﻿using NEcho;
+﻿using Ink;
 using System;
 using System.Collections.Generic;
 
-namespace NEcho
+namespace Ink
 {
     public static class Echo
     {

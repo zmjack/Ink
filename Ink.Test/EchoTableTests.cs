@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace NEcho.Test
+namespace Ink.Test
 {
     public class EchoTableTests
     {

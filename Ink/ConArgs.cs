@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace NEcho
+namespace Ink
 {
     /// <summary>
     /// This class provides some methods to separate the console arguments to content or property.

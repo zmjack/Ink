@@ -1,7 +1,7 @@
 ﻿using NStandard;
 using System;
 
-namespace NEcho
+namespace Ink
 {
     public sealed class ConAsk
     {

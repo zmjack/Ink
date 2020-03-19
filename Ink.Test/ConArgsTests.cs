@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Xunit;
 
-namespace NEcho.Test
+namespace Ink.Test
 {
     public class ConArgsTests
     {

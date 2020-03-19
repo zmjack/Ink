@@ -1,4 +1,4 @@
-﻿namespace NEcho
+﻿namespace Ink
 {
     public partial class ConUtility
     {

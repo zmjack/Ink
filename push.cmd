@@ -1,2 +1,2 @@
-nuget push "NEcho/bin/Release/NEcho.0.0.5.1.nupkg" -source nuget.org
+nuget push "Ink/bin/Release/Ink.0.0.6.nupkg" -source nuget.org
 pause

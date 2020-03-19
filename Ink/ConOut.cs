@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NEcho
+namespace Ink
 {
     public partial class ConOut
     {

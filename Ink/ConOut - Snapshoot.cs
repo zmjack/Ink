@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NEcho
+namespace Ink
 {
     public partial class ConOut
     {

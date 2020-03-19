@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NEcho\NEcho.csproj" />
+    <ProjectReference Include="..\Ink\Ink.csproj" />
   </ItemGroup>
 
 </Project>
