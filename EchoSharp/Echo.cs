@@ -1,7 +1,8 @@
-﻿using System;
+﻿using EchoSharp;
+using System;
 using System.Collections.Generic;
 
-namespace Ink
+namespace EchoSharp
 {
     public static class Echo
     {

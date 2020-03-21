@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ink
+namespace Dawnx
 {
     public class ConText
     {

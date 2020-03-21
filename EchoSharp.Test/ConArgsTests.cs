@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Xunit;
 
-namespace Ink.Test
+namespace EchoSharp.Test
 {
     public class ConArgsTests
     {

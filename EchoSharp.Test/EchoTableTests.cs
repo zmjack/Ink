@@ -1,6 +1,7 @@
+using System;
 using Xunit;
 
-namespace Ink.Test
+namespace EchoSharp.Test
 {
     public class EchoTableTests
     {

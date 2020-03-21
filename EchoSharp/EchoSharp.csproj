@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net35;net40;net45;net451;net46</TargetFrameworks>
+    <Description>Class libraries for formatting console output, such as tables, even interactively.</Description>
+    <Authors>zmjack</Authors>
+    <PackageProjectUrl>https://github.com/zmjack/Ink</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/zmjack/Ink</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageTags>Console Echo</PackageTags>
+    <Copyright>Copyright © dawnx.net 2019-2020</Copyright>
+    <Version>0.1.1</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Ink</PackageId>
+    <Product>Ink</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NStandard" Version="0.3.9.1" />
+  </ItemGroup>
+
+</Project>
