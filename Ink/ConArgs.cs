@@ -41,6 +41,9 @@ namespace Ink
             {
                 if (keyStarts.Any(x => arg.StartsWith(x)))
                 {
+                    if (!key.IsNullOrEmpty())
+                        Properties[key].Add(string.Empty);
+
                     key = arg;
                     if (!Properties.ContainsKey(key))
                         Properties.Add(key, new HashSet<string>());

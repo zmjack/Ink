@@ -52,5 +52,24 @@ namespace Ink.Test
             Assert.Equal(new[] { "C:\\Program Files" }, conArgs.Contents);
             Assert.Equal("C:\\Program Files", conArgs[0]);
         }
+
+        [Fact]
+        public void Test3()
+        {
+            var conArgs = new ConArgs(@"-o -n -i Ink", new[] { "-" });
+            var actual = conArgs.Properties.ToDictionary(x => x.Key, x => x.Value.ToArray());
+
+            Assert.Equal(new Dictionary<string, string[]>
+            {
+                ["-o"] = new[] { "" },
+                ["-n"] = new[] { "" },
+                ["-i"] = new[] { "Ink" },
+            }, actual);
+
+            Assert.Equal("", conArgs["-o"]);
+            Assert.Equal("", conArgs["-n"]);
+            Assert.Equal("Ink", conArgs["-i"]);
+        }
+
     }
 }
