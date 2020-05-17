@@ -22,9 +22,9 @@ namespace Ink.Test
                 ["-p"] = new[] { "" },
             }, actual);
 
-            Assert.Equal("127.0.0.1", conArgs["-h"]);
-            Assert.Equal("root", conArgs["-u"]);
-            Assert.Equal(string.Empty, conArgs["-p"]);
+            Assert.Equal("127.0.0.1", conArgs["-h"].FirstOrDefault());
+            Assert.Equal("root", conArgs["-u"].FirstOrDefault());
+            Assert.Equal(string.Empty, conArgs["-p"].FirstOrDefault());
             Assert.Null(conArgs["-t"]);
 
             Assert.Equal(new[] { "C:\\Program Files" }, conArgs.Contents);
@@ -44,9 +44,9 @@ namespace Ink.Test
                 ["-p"] = new[] { "" },
             }, actual);
 
-            Assert.Equal("127.0.0.1", conArgs["-h"]);
-            Assert.Equal("root", conArgs["-u"]);
-            Assert.Equal(string.Empty, conArgs["-p"]);
+            Assert.Equal("127.0.0.1", conArgs["-h"].FirstOrDefault());
+            Assert.Equal("root", conArgs["-u"].FirstOrDefault());
+            Assert.Equal(string.Empty, conArgs["-p"].FirstOrDefault());
             Assert.Null(conArgs["-t"]);
 
             Assert.Equal(new[] { "C:\\Program Files" }, conArgs.Contents);
@@ -66,9 +66,9 @@ namespace Ink.Test
                 ["-i"] = new[] { "Ink" },
             }, actual);
 
-            Assert.Equal("", conArgs["-o"]);
-            Assert.Equal("", conArgs["-n"]);
-            Assert.Equal("Ink", conArgs["-i"]);
+            Assert.Equal("", conArgs["-o"].FirstOrDefault());
+            Assert.Equal("", conArgs["-n"].FirstOrDefault());
+            Assert.Equal("Ink", conArgs["-i"].FirstOrDefault());
         }
 
     }
