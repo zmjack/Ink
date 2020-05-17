@@ -66,12 +66,12 @@ namespace Ink
         }
 
         public string this[int n] => n < Contents.Length ? Contents[n] : null;
-        public HashSet<string> this[string key]
+        public string[] this[string key]
         {
             get
             {
                 if (Properties.ContainsKey(key))
-                    return Properties[key];
+                    return Properties[key].ToArray();
                 else return null;
             }
         }
