@@ -9,7 +9,7 @@ Ink 是个易于使用的用于控制控制台格式化输出的工具库。
 
 ## 使用示例
 
-Ink 提供链式写法以简化批量输出操作。
+**Ink** 提供链式写法以简化批量输出操作。
 
 ```C#
 Echo.Line("Welcome to use Ink")
@@ -45,7 +45,7 @@ Echo.Center("Center");
 Echo.Right("Right");
 ```
 
-#### 多列输出
+#### 多列格式化输出
 
 ```C#
 Echo.Row(new[] { "ColA", "ColB" }, new[] { 10, 20 });
@@ -96,20 +96,20 @@ Echo.SeamlessTable(
 
 ---
 
-#### 询问 Yes/No
+#### 询问 Yes / No
 
 ```C#
 bool answer;
-Echo.AskYN("Are you sure", yn => askYn = yn)
+Echo.AskYN("Are you sure", yn => answer = yn)
     .Line($"The answer: {answer}");
 ```
 
-输入 y, yes, Y, Yes, YES，则判定为 Yes：
+**Yes**（y, yes, Y, Yes, YES）：
 
 > ? Are you sure: Yes  
 > The answer: true
 
-输入  n, no, N, No, NO，则判定为 No：
+**No**（n, no, N, No, NO）：
 
 > ? Are you sure: No  
 > The answer: false
@@ -117,17 +117,17 @@ Echo.AskYN("Are you sure", yn => askYn = yn)
 #### 询问
 
 ```C#
-string filename;
-Echo.Ask("Input filename", name => fileName = name)
-    .Line($"The filename: {fileName}");
+string name;
+Echo.Ask("Input your name", _name => name = name)
+    .Line($"Your name is {name}.");
 ```
 
-> ? Input filename: a.txt  
-> The filename: a.txt
+> ? Input your name: jack  
+> Your name is jack.
 
 <br/>
 
-### 光标位置
+### 光标
 
 ---
 
