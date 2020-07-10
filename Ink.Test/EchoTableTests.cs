@@ -39,7 +39,7 @@ namespace Ink.Test
 | 7          | Produce        | Dried fruit and bean curd                                  |
 | 8          | Seafood        | Seaweed and fish                                           |
 +------------+----------------+------------------------------------------------------------+
-", ConUtility.BorderTable(Categories));
+", ConUtility.Table(Categories));
         }
 
         [Fact]

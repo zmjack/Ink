@@ -117,14 +117,14 @@ namespace Ink
             return this;
         }
 
-        public ConOut BorderTable<TModel>(IEnumerable<TModel> models)
+        public ConOut Table<TModel>(IEnumerable<TModel> models)
         {
-            Console.Write(ConUtility.BorderTable(models));
+            Console.Write(ConUtility.Table(models));
             return this;
         }
-        public ConOut BorderTable(string[] headers, string[][] colLines, int[] lengths)
+        public ConOut Table(string[] headers, string[][] colLines, int[] lengths)
         {
-            Console.Write(ConUtility.BorderTable(headers, colLines, lengths));
+            Console.Write(ConUtility.Table(headers, colLines, lengths));
             return this;
         }
 

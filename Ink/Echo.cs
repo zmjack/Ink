@@ -23,8 +23,8 @@ namespace Ink
         public static ConOut OffsetRow(int offsetRow) => Instance.OffsetRow(offsetRow);
         public static ConOut OffsetCol(int offsetCol) => Instance.OffsetCol(offsetCol);
 
-        public static ConOut BorderTable<TModel>(IEnumerable<TModel> models) => Instance.BorderTable(models);
-        public static ConOut BorderTable(string[] headers, string[][] colLines, int[] lengths) => Instance.BorderTable(headers, colLines, lengths);
+        public static ConOut Table<TModel>(IEnumerable<TModel> models) => Instance.Table(models);
+        public static ConOut Table(string[] headers, string[][] colLines, int[] lengths) => Instance.Table(headers, colLines, lengths);
         public static ConOut NoBorderTable<TModel>(IEnumerable<TModel> models) => Instance.NoBorderTable(models);
         public static ConOut NoBorderTable(string[] headers, string[][] colLines, int[] lengths) => Instance.NoBorderTable(headers, colLines, lengths);
         public static ConOut SeamlessTable<TModel>(IEnumerable<TModel> models) => Instance.SeamlessTable(models);

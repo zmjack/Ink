@@ -12,7 +12,7 @@ namespace Ink
         /// </summary>
         /// <typeparam name="TModel"></typeparam>
         /// <param name="models"></param>
-        public static string BorderTable<TModel>(IEnumerable<TModel> models)
+        public static string Table<TModel>(IEnumerable<TModel> models)
         {
             var props = typeof(TModel).GetProperties();
             var lengths = new int[props.Length];
@@ -32,7 +32,7 @@ namespace Ink
                 }
             }
 
-            return BorderTable(
+            return Table(
                 headers: props.Select(x => x.Name).ToArray(),
                 colLines: models.Select(model => props.Select(x => x.GetValue(model)?.ToString() ?? "").ToArray()).ToArray(),
                 lengths: lengths);
@@ -44,7 +44,7 @@ namespace Ink
         /// <param name="headers"></param>
         /// <param name="colLines"></param>
         /// <param name="lengths"></param>
-        public static string BorderTable(string[] headers, string[][] colLines, int[] lengths)
+        public static string Table(string[] headers, string[][] colLines, int[] lengths)
         {
             var sb = new StringBuilder();
 
