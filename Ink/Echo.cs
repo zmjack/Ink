@@ -19,9 +19,9 @@ namespace Ink
         public static ConOut Center(string line, ConColor color = null) => Instance.Center(line, color);
         public static ConOut Row(string[] cols, int[] colLengths) => Instance.Row(cols, colLengths);
 
-        public static ConOut Offset(int offsetRow, int offsetCol) => Instance.Offset(offsetRow, offsetCol);
-        public static ConOut OffsetRow(int offsetRow) => Instance.OffsetRow(offsetRow);
-        public static ConOut OffsetCol(int offsetCol) => Instance.OffsetCol(offsetCol);
+        public static ConOut Move(int offsetRow, int offsetCol) => Instance.Move(offsetRow, offsetCol);
+        public static ConOut RowMove(int offsetRow) => Instance.RowMove(offsetRow);
+        public static ConOut ColMove(int offsetCol) => Instance.ColMove(offsetCol);
 
         public static ConOut Table<TModel>(IEnumerable<TModel> models) => Instance.Table(models);
         public static ConOut Table(string[] headers, string[][] colLines, int[] lengths) => Instance.Table(headers, colLines, lengths);
@@ -30,10 +30,10 @@ namespace Ink
         public static ConOut SeamlessTable<TModel>(IEnumerable<TModel> models) => Instance.SeamlessTable(models);
         public static ConOut SeamlessTable(string[] headers, string[][] colLines, int[] lengths) => Instance.SeamlessTable(headers, colLines, lengths);
 
-        public static ConOut Ask(string question, Func<string, string> resolver) => Instance.Ask(question, resolver);
-        public static ConOut AskYN(string question, Func<bool, string> resolver) => Instance.AskYN(question, resolver);
-        public static ConOut AskYN(string question, Action<bool> method) => Instance.AskYN(question, method);
-        public static ConOut AskYN(string question, out bool ret) => Instance.AskYN(question, out ret);
+        public static ConOut Ask(string question, Action<AskAnswer> resolve) => Instance.Ask(question, resolve);
+        public static ConOut Ask(string question, out string value) => Instance.Ask(question, out value);
+        public static ConOut AskYN(string question) => Instance.AskYN(question);
+        public static ConOut AskYN(string question, out bool value) => Instance.AskYN(question, out value);
 
     }
 }

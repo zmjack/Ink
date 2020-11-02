@@ -14,6 +14,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ink", "Ink\Ink.csproj", "{4
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ink.Test", "Ink.Test\Ink.Test.csproj", "{B0A0D740-8617-4CFD-B50B-240173B93469}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InkApp", "InkApp\InkApp.csproj", "{80964A14-319B-4812-A589-97EC621F54AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{B0A0D740-8617-4CFD-B50B-240173B93469}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0A0D740-8617-4CFD-B50B-240173B93469}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0A0D740-8617-4CFD-B50B-240173B93469}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80964A14-319B-4812-A589-97EC621F54AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80964A14-319B-4812-A589-97EC621F54AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80964A14-319B-4812-A589-97EC621F54AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80964A14-319B-4812-A589-97EC621F54AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

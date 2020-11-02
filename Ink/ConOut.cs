@@ -95,24 +95,24 @@ namespace Ink
             return this;
         }
 
-        public ConOut Offset(int offsetRow, int offsetCol)
+        public ConOut Move(int offsetRow, int offsetCol)
         {
-            var left = (Console.CursorLeft - offsetCol).For(_ => _ >= 0 ? _ : 0);
-            var top = (Console.CursorTop - offsetRow).For(_ => _ >= 0 ? _ : 0);
+            var left = (Console.CursorLeft - offsetCol).For(x => x >= 0 ? x : 0);
+            var top = (Console.CursorTop - offsetRow).For(x => x >= 0 ? x : 0);
             Console.SetCursorPosition(left, top);
             return this;
         }
 
-        public ConOut OffsetRow(int offsetRow)
+        public ConOut RowMove(int offsetRow)
         {
-            var top = (Console.CursorTop - offsetRow).For(_ => _ >= 0 ? _ : 0);
+            var top = (Console.CursorTop - offsetRow).For(x => x >= 0 ? x : 0);
             Console.SetCursorPosition(Console.CursorLeft, top);
             return this;
         }
 
-        public ConOut OffsetCol(int offsetCol)
+        public ConOut ColMove(int offsetCol)
         {
-            var left = (Console.CursorLeft - offsetCol).For(_ => _ >= 0 ? _ : 0);
+            var left = (Console.CursorLeft - offsetCol).For(x => x >= 0 ? x : 0);
             Console.SetCursorPosition(left, Console.CursorTop);
             return this;
         }
@@ -150,73 +150,44 @@ namespace Ink
             return this;
         }
 
-        public ConOut Ask(string question, Func<string, string> resolver)
+        public ConOut Ask(string question, Action<AskAnswer> resolve)
         {
-            new ConAsk(this, question, new ConAsk.ResolveDelegate(resolver)).Resolve();
+            var ask = new ConAsk(this, question);
+            ask.Resolve(resolve);
             return this;
         }
 
-        public ConOut Ask(string question, Action<string> method)
+        public ConOut Ask(string question, out string value)
         {
-            new ConAsk(this, question, new ConAsk.ResolveDelegate(answer =>
-            {
-                method(answer);
-                return answer;
-            })).Resolve();
+            string _value = null;
+            var ask = new ConAsk(this, question);
+            ask.Resolve(answer => _value = answer.Value);
+            value = _value;
             return this;
         }
 
-        public ConOut AskYN(string question, Func<bool, string> resolver)
+        public ConOut AskYN(string question) => AskYN(question, out _);
+        public ConOut AskYN(string question, out bool value)
         {
-            new ConAsk(this, question, new ConAsk.ResolveDelegate(answer =>
+            var _value = false;
+            var ask = new ConAsk(this, question);
+            ask.Resolve(answer =>
             {
-                if (new[] { "y", "yes", "Y", "Yes", "YES" }.Contains(answer))
-                    return resolver(true);
-                else if (new[] { "n", "no", "N", "No", "NO" }.Contains(answer))
-                    return resolver(false);
-                else return null;
-            })).Resolve();
-
-            return this;
-        }
-        public ConOut AskYN(string question, Action<bool> method)
-        {
-            new ConAsk(this, question, new ConAsk.ResolveDelegate(answer =>
-            {
-                if (new[] { "y", "yes", "Y", "Yes", "YES" }.Contains(answer))
+                if (new[] { "y", "yes", "Y", "Yes", "YES" }.Contains(answer.Value))
                 {
-                    method(true);
-                    return "Yes";
+                    answer.Action = AskAction.Accept;
+                    answer.Value = "Yes";
+                    _value = true;
                 }
-                else if (new[] { "n", "no", "N", "No", "NO" }.Contains(answer))
+                else if (new[] { "n", "no", "N", "No", "NO" }.Contains(answer.Value))
                 {
-                    method(false);
-                    return "No";
+                    answer.Action = AskAction.Accept;
+                    answer.Value = "No";
+                    _value = false;
                 }
-                else return null;
-            })).Resolve();
-
-            return this;
-        }
-        public ConOut AskYN(string question, out bool ret)
-        {
-            bool _ret = false;
-            new ConAsk(this, question, new ConAsk.ResolveDelegate(answer =>
-            {
-                if (new[] { "y", "yes", "Y", "Yes", "YES" }.Contains(answer))
-                {
-                    _ret = true;
-                    return "Yes";
-                }
-                else if (new[] { "n", "no", "N", "No", "NO" }.Contains(answer))
-                {
-                    _ret = false;
-                    return "No";
-                }
-                else return null;
-            })).Resolve();
-
-            ret = _ret;
+                else answer.Action = AskAction.Retry;
+            });
+            value = _value;
             return this;
         }
 
