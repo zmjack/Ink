@@ -33,6 +33,8 @@ namespace Ink
         public static ConOut Ask(string question, Action<AskAnswer> resolve) => Instance.Ask(question, resolve);
         public static ConOut Ask(string question, out string value) => Instance.Ask(question, out value);
         public static ConOut AskYN(string question, out bool value) => Instance.AskYN(question, out value);
+        public static ConOut PressContinue() => Instance.PressContinue();
+        public static ConOut PressContinue(ConsoleKey key) => Instance.PressContinue(key);
 
     }
 }

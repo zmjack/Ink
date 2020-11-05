@@ -172,13 +172,13 @@ namespace Ink
             var ask = new ConAsk(this, question);
             ask.Resolve(answer =>
             {
-                if (new[] { "y", "yes", "Y", "Yes", "YES" }.Contains(answer.Value))
+                if (new[] { "y", "yes", "Y", "YES", "Yes" }.Contains(answer.Value))
                 {
                     answer.Action = AskAction.Accept;
                     answer.Value = "Yes";
                     _value = true;
                 }
-                else if (new[] { "n", "no", "N", "No", "NO" }.Contains(answer.Value))
+                else if (new[] { "n", "no", "N", "NO", "No" }.Contains(answer.Value))
                 {
                     answer.Action = AskAction.Accept;
                     answer.Value = "No";
@@ -187,6 +187,17 @@ namespace Ink
                 else answer.Action = AskAction.Retry;
             });
             value = _value;
+            return this;
+        }
+
+        public ConOut PressContinue()
+        {
+            Console.ReadKey(true);
+            return this;
+        }
+        public ConOut PressContinue(ConsoleKey key)
+        {
+            while (Console.ReadKey(true).Key != key) ;
             return this;
         }
 

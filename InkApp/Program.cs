@@ -16,7 +16,11 @@ namespace InkApp
             });
             Echo.Ask("Motto:", out var motto);
 
-            Echo.Line($"Hello, {name}!")
+            Echo.Line()
+                .Line("Press ENTER to continue...")
+                .PressContinue(ConsoleKey.Enter)
+                .Line()
+                .Line($"Hello, {name}!")
                 .Line($"Your motto is: {motto}")
                 .Line($"You can manage the following categories:")
                 .Table(Categories);
