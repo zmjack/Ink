@@ -10,7 +10,7 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageTags>Console Echo</PackageTags>
     <Copyright>Copyright © dawnx.net 2019-2020</Copyright>
-    <Version>0.5.5</Version>
+    <Version>0.5.6</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Ink</PackageId>
     <Product>Ink</Product>

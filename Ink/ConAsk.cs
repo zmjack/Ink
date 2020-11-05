@@ -19,9 +19,6 @@ namespace Ink
 
         public void Resolve(Action<AskAnswer> resolve)
         {
-            var cursorVisible = Console.CursorVisible;
-            Console.CursorVisible = true;
-
             while (true)
             {
                 PrintAskHint?.Invoke();
@@ -46,8 +43,6 @@ namespace Ink
                 }
                 else continue;
             }
-
-            Console.CursorVisible = cursorVisible;
         }
     }
 
