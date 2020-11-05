@@ -166,7 +166,6 @@ namespace Ink
             return this;
         }
 
-        public ConOut AskYN(string question) => AskYN(question, out _);
         public ConOut AskYN(string question, out bool value)
         {
             var _value = false;
