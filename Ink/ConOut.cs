@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace Ink
 {
@@ -198,6 +199,17 @@ namespace Ink
         public ConOut PressContinue(ConsoleKey key)
         {
             while (Console.ReadKey(true).Key != key) ;
+            return this;
+        }
+
+        public ConOut Sleep(int millisecondsTimeout)
+        {
+            Thread.Sleep(millisecondsTimeout);
+            return this;
+        }
+        public ConOut Sleep(TimeSpan timeout)
+        {
+            Thread.Sleep(timeout);
             return this;
         }
 
