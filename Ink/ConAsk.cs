@@ -33,7 +33,7 @@ namespace Ink
                 buffer.AppendLine(line);
                 var answer = new AskAnswer
                 {
-                    Buffer = buffer.ToString(),
+                    Buffer = buffer,
                     Value = line,
                 };
                 resolve(answer);
