@@ -25,7 +25,7 @@ namespace Ink.Test
             Assert.Equal("127.0.0.1", conArgs["-h"].FirstOrDefault());
             Assert.Equal("root", conArgs["-u"].FirstOrDefault());
             Assert.Equal(string.Empty, conArgs["-p"].FirstOrDefault());
-            Assert.Null(conArgs["-t"]);
+            Assert.Empty(conArgs["-t"]);
 
             Assert.Equal(new[] { "C:\\Program Files" }, conArgs.Contents);
             Assert.Equal("C:\\Program Files", conArgs[0]);
@@ -47,7 +47,7 @@ namespace Ink.Test
             Assert.Equal("127.0.0.1", conArgs["-h"].FirstOrDefault());
             Assert.Equal("root", conArgs["-u"].FirstOrDefault());
             Assert.Equal(string.Empty, conArgs["-p"].FirstOrDefault());
-            Assert.Null(conArgs["-t"]);
+            Assert.Empty(conArgs["-t"]);
 
             Assert.Equal(new[] { "C:\\Program Files" }, conArgs.Contents);
             Assert.Equal("C:\\Program Files", conArgs[0]);

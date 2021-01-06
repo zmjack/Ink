@@ -1,5 +1,6 @@
 ﻿using NStandard;
 using System;
+using System.Text;
 
 namespace Ink
 {
@@ -19,6 +20,7 @@ namespace Ink
 
         public void Resolve(Action<AskAnswer> resolve)
         {
+            var buffer = new StringBuilder();
             while (true)
             {
                 PrintAskHint?.Invoke();
@@ -28,7 +30,12 @@ namespace Ink
                 var top = Console.CursorTop;
 
                 var line = Console.ReadLine();
-                var answer = new AskAnswer { Value = line };
+                buffer.AppendLine(line);
+                var answer = new AskAnswer
+                {
+                    Buffer = buffer.ToString(),
+                    Value = line,
+                };
                 resolve(answer);
 
                 if (answer.Action == AskAction.Default && answer != null) answer.Action = AskAction.Accept;
