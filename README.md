@@ -35,11 +35,13 @@ Ink is an easy-to-use library for controlling console formatting output.
 
 ```C#
 Echo.Line("Welcome to use Ink")
-    .Line("+==++==++==++==++==++==+");
+    .Line("==================");
 ```
 
-> Welcome to use Ink  
-> +==++==++==++==++==++==+
+```
+Welcome to use Ink
+==================
+```
 
 <br/>
 
@@ -73,6 +75,10 @@ Echo.Right("Right");
 Echo.Row(new[] { "ColA", "ColB" }, new[] { 10, 20 });
 ```
 
+```
+ColA        ColB
+```
+
 <br/>
 
 ### Table output
@@ -82,12 +88,39 @@ Echo.Row(new[] { "ColA", "ColB" }, new[] { 10, 20 });
 #### Border table
 
 ```C#
-Echo.BorderTable(
+Echo.Table(
     headers: new[] { "ColA", "ColB" },
 	colLines: new[] {
         new[] { "A0", "B0" }
     },
     lengths : new[] { 10, 20 });
+```
+
+```
++------------+----------------------+
+| ColA       | ColB                 |
++------------+----------------------+
+| A0         | B0                   |
++------------+----------------------+
+```
+
+#### Seamless table
+
+```C#
+Echo.SeamlessTable(
+    headers: new[] { "ColA", "ColB" },
+	colLines: new[] {
+        new[] { "A0", "B0" }
+    },
+    lengths : new[] { 10, 20 });
+```
+
+```
+┌───────────┬─────────────────────┐
+│ ColA      │ ColB                │
+├───────────┼─────────────────────┤
+│ A0        │ B0                  │
+└───────────┴─────────────────────┘
 ```
 
 #### No border table
@@ -101,15 +134,26 @@ Echo.NoBorderTable(
     lengths : new[] { 10, 20 });
 ```
 
-#### Seamless table
+```
+ColA        ColB
+A0          B0
+```
 
-```C#
-Echo.SeamlessTable(
-    headers: new[] { "ColA", "ColB" },
-	colLines: new[] {
-        new[] { "A0", "B0" }
-    },
-    lengths : new[] { 10, 20 });
+#### Object Output
+
+```csharp
+Echo.Table(new[]
+{
+    new { Name = "Jack", Note = "Beer lover." },
+});
+```
+
+```
++------+-------------+
+| Name | Note        |
++------+-------------+
+| Jack | Beer lover. |
++------+-------------+
 ```
 
 <br/>
@@ -128,35 +172,30 @@ Echo.AskYN("Are you sure", yn => answer = yn)
 
 **Yes**（y, yes, Y, Yes, YES）：
 
-> ? Are you sure: Yes  
-> The answer: true
+```
+? Are you sure: Yes
+The answer: true
+```
 
 **No**（n, no, N, No, NO）：
 
-> ? Are you sure: No  
-> The answer: false
+```
+? Are you sure: No
+The answer: false
+```
 
 #### Ask
 
 ```C#
 string name;
-Echo.Ask("Input your name", _name => name = name)
+Echo.Ask("Input your name", answer => name = answer)
     .Line($"Your name is {name}.");
 ```
 
-> ? Input your name: jack  
-> Your name is jack.
+```
+? Input your name: jack
+Your name is jack.
+```
 
 <br/>
-
-### Cursor
-
----
-
-#### Set cursor position
-
-```C#
-// set cursor to (row 1, col 10)
-Echo.Offset(1, 10);
-```
 

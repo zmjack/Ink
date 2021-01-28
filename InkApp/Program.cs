@@ -8,6 +8,10 @@ namespace InkApp
     {
         static void Main(string[] args)
         {
+            Echo.Left("Left").Line();
+            Echo.Center("Center").Line();
+            Echo.Right("Right").Line();
+
             string name = "";
             Echo.Ask("What's your name?", answer =>
             {
@@ -15,7 +19,7 @@ namespace InkApp
                 else name = answer.Value = answer.Value.CapitalizeFirst();
             });
             Echo.Ask("Motto:", out var motto);
-
+            
             Echo.Line()
                 .Line("Press ENTER to continue...")
                 .PressContinue(ConsoleKey.Enter)

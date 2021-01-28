@@ -35,11 +35,13 @@ Ink 是个易于使用的用于控制控制台格式化输出的工具库。
 
 ```C#
 Echo.Line("Welcome to use Ink")
-    .Line("+==++==++==++==++==++==+");
+    .Line("==================");
 ```
 
-> Welcome to use Ink  
->+==++==++==++==++==++==+
+```
+Welcome to use Ink
+==================
+```
 
 <br/>
 
@@ -73,6 +75,10 @@ Echo.Right("Right");
 Echo.Row(new[] { "ColA", "ColB" }, new[] { 10, 20 });
 ```
 
+```
+ColA        ColB
+```
+
 <br/>
 
 ### 表格输出
@@ -82,12 +88,39 @@ Echo.Row(new[] { "ColA", "ColB" }, new[] { 10, 20 });
 #### 字符边框表格
 
 ```C#
-Echo.BorderTable(
+Echo.Table(
     headers: new[] { "ColA", "ColB" },
 	colLines: new[] {
         new[] { "A0", "B0" }
     },
     lengths : new[] { 10, 20 });
+```
+
+```
++------------+----------------------+
+| ColA       | ColB                 |
++------------+----------------------+
+| A0         | B0                   |
++------------+----------------------+
+```
+
+#### 制表符边框表格
+
+```C#
+Echo.SeamlessTable(
+    headers: new[] { "ColA", "ColB" },
+	colLines: new[] {
+        new[] { "A0", "B0" }
+    },
+    lengths : new[] { 10, 20 });
+```
+
+```
+┌───────────┬─────────────────────┐
+│ ColA      │ ColB                │
+├───────────┼─────────────────────┤
+│ A0        │ B0                  │
+└───────────┴─────────────────────┘
 ```
 
 #### 无边框表格
@@ -101,15 +134,26 @@ Echo.NoBorderTable(
     lengths : new[] { 10, 20 });
 ```
 
-#### 制表符边框表格
+```
+ColA        ColB
+A0          B0
+```
 
-```C#
-Echo.SeamlessTable(
-    headers: new[] { "ColA", "ColB" },
-	colLines: new[] {
-        new[] { "A0", "B0" }
-    },
-    lengths : new[] { 10, 20 });
+#### 对象输出
+
+```
+Echo.Table(new[]
+{
+    new { Name = "Jack", Note = "Beer lover." },
+});
+```
+
+```
++------+-------------+
+| Name | Note        |
++------+-------------+
+| Jack | Beer lover. |
++------+-------------+
 ```
 
 <br/>
@@ -128,35 +172,30 @@ Echo.AskYN("Are you sure", yn => answer = yn)
 
 **Yes**（y, yes, Y, Yes, YES）：
 
-> ? Are you sure: Yes  
-> The answer: true
+```
+? Are you sure: Yes
+The answer: true
+```
 
 **No**（n, no, N, No, NO）：
 
-> ? Are you sure: No  
-> The answer: false
+```
+? Are you sure: No
+The answer: false
+```
 
 #### 询问
 
 ```C#
 string name;
-Echo.Ask("Input your name", _name => name = name)
+Echo.Ask("Input your name", answer => name = answer)
     .Line($"Your name is {name}.");
 ```
 
-> ? Input your name: jack  
-> Your name is jack.
+```
+? Input your name: jack
+Your name is jack.
+```
 
 <br/>
-
-### 光标
-
----
-
-#### 设置光标位置
-
-```C#
-// set cursor to (row 1, col 10)
-Echo.Offset(1, 10);
-```
 
