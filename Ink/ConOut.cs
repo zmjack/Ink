@@ -14,15 +14,17 @@ namespace Ink
 
         public ConOut ClearRow()
         {
-            Console.SetCursorPosition(0, Console.CursorTop);
-            Console.Write(" ".Repeat(Console.WindowWidth));
-            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            using (new InkScope())
+            {
+                Console.SetCursorPosition(0, Console.CursorTop);
+                Console.Write(" ".Repeat(Console.WindowWidth));
+            }
             return this;
         }
 
         public ConOut RowBeginning()
         {
-            Console.Write('\b');
+            Console.SetCursorPosition(0, Console.CursorTop);
             return this;
         }
 
@@ -64,36 +66,42 @@ namespace Ink
 
         public ConOut Left(string line, ConColor color = null)
         {
-            RowBeginning();
-            Print($"{line}{" ".Repeat(Console.WindowWidth - line.GetLengthA())}", color);
-            return this;
+            using (new InkScope())
+            {
+                RowBeginning();
+                Print($"{line}{" ".Repeat(Console.WindowWidth - line.GetLengthA())}", color);
+                return this;
+            }
         }
 
         public ConOut Right(string line, ConColor color = null)
         {
-            RowBeginning();
-            Print($"{" ".Repeat(Console.WindowWidth - line.GetLengthA())}{line}", color);
-            return this;
+            using (new InkScope())
+            {
+                RowBeginning();
+                Print($"{" ".Repeat(Console.WindowWidth - line.GetLengthA())}{line}", color);
+                return this;
+            }
         }
 
         public ConOut Center(string line, ConColor color = null)
         {
-            RowBeginning();
-            Print($"{line.Center(Console.WindowWidth)}", color);
-            return this;
+            using (new InkScope())
+            {
+                RowBeginning();
+                Print($"{line.Center(Console.WindowWidth)}", color);
+                return this;
+            }
         }
 
         public ConOut Row(string[] cols, int[] colLengths)
         {
-            var top = Console.CursorTop;
-
-            ClearRow();
-            Console.Write(ConUtility.Row(cols, colLengths));
-
-            if (Console.CursorTop != top)
-                Console.CursorTop = top;
-
-            return this;
+            using (new InkScope())
+            {
+                ClearRow();
+                Console.Write(ConUtility.Row(cols, colLengths));
+                return this;
+            }
         }
 
         public ConOut Move(int offsetRow, int offsetCol)
