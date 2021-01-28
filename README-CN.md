@@ -7,6 +7,28 @@ Ink 是个易于使用的用于控制控制台格式化输出的工具库。
 
 <br/>
 
+## 安装
+
+- **Package Manager**
+
+  ```powershell
+  Install-Package Ink
+  ```
+
+- **.NET CLI**
+
+  ```powershell
+  dotnet add package Ink
+  ```
+
+- **PackageReference**
+
+  ```powershell
+  <PackageReference Include="Ink" Version="*" />
+  ```
+
+<br/>
+
 ## 使用示例
 
 **Ink** 提供链式写法以简化批量输出操作。

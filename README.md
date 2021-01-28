@@ -7,6 +7,28 @@ Ink is an easy-to-use library for controlling console formatting output.
 
 <br/>
 
+## Install
+
+- **Package Manager**
+
+  ```powershell
+  Install-Package Ink
+  ```
+
+- **.NET CLI**
+
+  ```powershell
+  dotnet add package Ink
+  ```
+
+- **PackageReference**
+
+  ```powershell
+  <PackageReference Include="Ink" Version="*" />
+  ```
+
+<br/>
+
 ## Samples
 
 **Ink** provides chain writing to simplify output operations for more than one line.
