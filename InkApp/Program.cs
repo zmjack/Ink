@@ -22,7 +22,7 @@ namespace InkApp
             });
             Echo.Ask("What's your nickname?", out string nickname, "jj");
             Echo.Ask("How old are you?", out int age, 22);
-            Echo.Ask($"Mottos:{Environment.NewLine}", out var mottos, endsWith: Environment.NewLine, false);
+            Echo.Ask($"Mottos:{Environment.NewLine}", out var mottos, endsWith: Environment.NewLine, -Environment.NewLine.Length);
 
             Echo.Line("Press ENTER to continue...")
                 .PressContinue(ConsoleKey.Enter)

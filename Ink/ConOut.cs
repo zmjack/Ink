@@ -247,23 +247,23 @@ namespace Ink
         public ConOut Ask<T>(string question, out T value) => AskResolve(question, out value, answer => answer.Action = AskAction.Accept, true, default);
         public ConOut Ask<T>(string question, out T value, T defaultValue) => AskResolve(question, out value, answer => answer.Action = AskAction.Accept, false, defaultValue);
 
-        protected void AskMultilineFollowResolve(AskAnswer answer, string endsWith, bool includeEndsWith)
+        protected void AskMultilineFollowResolve(AskAnswer answer, string endsWith, int adjustEnd)
         {
             if (answer.Value.EndsWith(endsWith))
             {
-                if (!includeEndsWith) answer.Value = answer.Value.Substring(0, answer.Value.Length - endsWith.Length);
+                if (adjustEnd != 0) answer.Value = answer.Value.Substring(0, answer.Value.Length + adjustEnd);
                 answer.Action = AskAction.Accept;
             }
             else answer.Action = AskAction.Continue;
         }
 
-        public ConOut Ask(string question, out string value, string endsWith, bool includeEndsWith)
+        public ConOut Ask(string question, out string value, string endsWith, int adjustEnd)
         {
-            return AskResolve(question, out value, answer => AskMultilineFollowResolve(answer, endsWith, includeEndsWith), true, default);
+            return AskResolve(question, out value, answer => AskMultilineFollowResolve(answer, endsWith, adjustEnd), true, default);
         }
-        public ConOut Ask(string question, out string value, string endsWith, bool includeEndsWith, string defaultValue)
+        public ConOut Ask(string question, out string value, string endsWith, int adjustEnd, string defaultValue)
         {
-            return AskResolve(question, out value, answer => AskMultilineFollowResolve(answer, endsWith, includeEndsWith), false, defaultValue);
+            return AskResolve(question, out value, answer => AskMultilineFollowResolve(answer, endsWith, adjustEnd), false, defaultValue);
         }
 
         public ConOut AskYN(string question, out bool value)

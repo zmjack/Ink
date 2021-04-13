@@ -36,8 +36,8 @@ namespace Ink
         public static ConOut Ask<T>(string question, out T value, Action<AskAnswer> followResolve) => Instance.Ask(question, out value, followResolve);
         public static ConOut Ask<T>(string question, out T value) => Instance.Ask(question, out value);
         public static ConOut Ask<T>(string question, out T value, T defaultValue) => Instance.Ask(question, out value, defaultValue);
-        public static ConOut Ask(string question, out string value, string endsWith, bool includeEndsWith) => Instance.Ask(question, out value, endsWith, includeEndsWith);
-        public static ConOut Ask(string question, out string value, string endsWith, bool includeEndsWith, string defaultValue) => Instance.Ask(question, out value, endsWith, includeEndsWith, defaultValue);
+        public static ConOut Ask(string question, out string value, string endsWith, int adjustEnd) => Instance.Ask(question, out value, endsWith, adjustEnd);
+        public static ConOut Ask(string question, out string value, string endsWith, int adjustEnd, string defaultValue) => Instance.Ask(question, out value, endsWith, adjustEnd, defaultValue);
 
         public static ConOut AskYN(string question, out bool value) => Instance.AskYN(question, out value);
         public static ConOut PressContinue() => Instance.PressContinue();
