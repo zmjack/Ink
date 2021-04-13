@@ -10,14 +10,19 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageTags>Console Echo</PackageTags>
     <Copyright>Copyright © dawnx.net 2019-2020</Copyright>
-    <Version>0.6.4</Version>
+    <Version>0.6.6</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Ink</PackageId>
     <Product>Ink</Product>
     <LangVersion>preview</LangVersion>
+    <PackageIcon>ink.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\ink.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
     <None Include="..\LICENSE.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
@@ -25,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NStandard" Version="0.6.4" />
+    <PackageReference Include="NStandard" Version="0.6.13" />
   </ItemGroup>
 
 </Project>

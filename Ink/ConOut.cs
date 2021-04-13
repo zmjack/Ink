@@ -209,6 +209,11 @@ namespace Ink
             while (Console.ReadKey(true).Key != key) ;
             return this;
         }
+        public ConOut PressContinue(ConsoleModifiers modifiers, ConsoleKey key)
+        {
+            while (!Console.ReadKey(true).For(consoleKey => consoleKey.Key == key && consoleKey.Modifiers == modifiers)) ;
+            return this;
+        }
 
         public ConOut Sleep(int millisecondsTimeout)
         {
