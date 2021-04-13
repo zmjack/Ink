@@ -69,6 +69,16 @@ Echo.Center("Center");
 Echo.Right("Right");
 ```
 
+**Overwrite output:**
+
+```csharp
+Echo.CoverLeft("Left").CoverCenter("Center").CoverRight("Right");
+```
+
+```
+Left        Center        Right
+```
+
 #### Multicolumn formatted output
 
 ```C#
@@ -165,8 +175,7 @@ Echo.Table(new[]
 #### Ask Yes / No
 
 ```C#
-bool answer;
-Echo.AskYN("Are you sure", yn => answer = yn)
+Echo.AskYN("Are you sure:", out var answer)
     .Line($"The answer: {answer}");
 ```
 
@@ -187,14 +196,29 @@ The answer: false
 #### Ask
 
 ```C#
-string name;
-Echo.Ask("Input your name", answer => name = answer)
-    .Line($"Your name is {name}.");
+Echo.Ask("Input your name:", out string name)
+    .Ask("Age:", out int age)
+    .Line($"Your name is {name} (Age: {age}).");
 ```
 
 ```
 ? Input your name: jack
-Your name is jack.
+? Age: 30
+Your name is jack (Age: 30).
+```
+
+#### Ask for multiline
+
+```csharp
+Echo.Ask($"Mottos:{Environment.NewLine}", out var motto, endsWith: ";")
+    .Line($"The answer: {motto.Replace(Environment.NewLine, " ")}");
+```
+
+```
+? Mottos:
+Life is but a span.
+Write less, do more.;
+The answer: Life is but a span. Write less, do more.
 ```
 
 <br/>

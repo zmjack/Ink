@@ -15,8 +15,11 @@ namespace Ink
         public static ConOut Line(string content, ConColor color = null) => Instance.Line(content, color);
         public static ConOut Print(string content, ConColor color = null) => Instance.Print(content, color);
         public static ConOut Left(string line, ConColor color = null) => Instance.Left(line, color);
-        public static ConOut Right(string line, ConColor color = null) => Instance.Right(line, color);
         public static ConOut Center(string line, ConColor color = null) => Instance.Center(line, color);
+        public static ConOut Right(string line, ConColor color = null) => Instance.Right(line, color);
+        public static ConOut CoverLeft(string line, ConColor color = null) => Instance.CoverLeft(line, color);
+        public static ConOut CoverCenter(string line, ConColor color = null) => Instance.CoverCenter(line, color);
+        public static ConOut CoverRight(string line, ConColor color = null) => Instance.CoverRight(line, color);
         public static ConOut Row(string[] cols, int[] colLengths) => Instance.Row(cols, colLengths);
 
         public static ConOut Move(int offsetRow, int offsetCol) => Instance.Move(offsetRow, offsetCol);
@@ -32,9 +35,24 @@ namespace Ink
 
         public static ConOut Ask(string question, Action<AskAnswer> resolve) => Instance.Ask(question, resolve);
         public static ConOut Ask(string question, out string value) => Instance.Ask(question, out value);
+        public static ConOut Ask(string question, out string value, string endsWith, bool includeEndsWith = false) => Instance.Ask(question, out value, endsWith, includeEndsWith);
+
+        public static ConOut Ask(string question, out byte value) => Instance.Ask(question, out value);
+        public static ConOut Ask(string question, out sbyte value) => Instance.Ask(question, out value);
+        public static ConOut Ask(string question, out short value) => Instance.Ask(question, out value);
+        public static ConOut Ask(string question, out ushort value) => Instance.Ask(question, out value);
+        public static ConOut Ask(string question, out int value) => Instance.Ask(question, out value);
+        public static ConOut Ask(string question, out uint value) => Instance.Ask(question, out value);
+        public static ConOut Ask(string question, out long value) => Instance.Ask(question, out value);
+        public static ConOut Ask(string question, out ulong value) => Instance.Ask(question, out value);
+        public static ConOut Ask(string question, out float value) => Instance.Ask(question, out value);
+        public static ConOut Ask(string question, out double value) => Instance.Ask(question, out value);
+        public static ConOut Ask(string question, out decimal value) => Instance.Ask(question, out value);
+        public static ConOut Ask(string question, out DateTime value) => Instance.Ask(question, out value);
+
         public static ConOut AskYN(string question, out bool value) => Instance.AskYN(question, out value);
         public static ConOut PressContinue() => Instance.PressContinue();
         public static ConOut PressContinue(ConsoleKey key) => Instance.PressContinue(key);
-
+        public static ConOut PressContinue(ConsoleModifiers modifiers, ConsoleKey key) => Instance.PressContinue(modifiers, key);
     }
 }

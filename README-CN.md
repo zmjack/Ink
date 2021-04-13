@@ -33,7 +33,7 @@ Ink 是个易于使用的用于控制控制台格式化输出的工具库。
 
 **Ink** 提供链式写法以简化批量输出操作。
 
-```C#
+```csharp
 Echo.Line("Welcome to use Ink")
     .Line("==================");
 ```
@@ -51,27 +51,39 @@ Welcome to use Ink
 
 #### 光标处输出文本
 
-```C#
+```csharp
 Echo.Print("text.");
 ```
 
 #### 输出单行文本
 
-```C#
+```csharp
 Echo.Line("Single line.");
 ```
 
 #### 行左侧输出 / 行中输出 / 行右侧输出
 
-```C#
+```csharp
 Echo.Left("Left");
 Echo.Center("Center");
 Echo.Right("Right");
 ```
 
+**覆盖输出：**
+
+```csharp
+Echo.CoverLeft("Left").CoverCenter("Center").CoverRight("Right");
+```
+
+```
+Left        Center        Right
+```
+
+####
+
 #### 多列格式化输出
 
-```C#
+```csharp
 Echo.Row(new[] { "ColA", "ColB" }, new[] { 10, 20 });
 ```
 
@@ -87,7 +99,7 @@ ColA        ColB
 
 #### 字符边框表格
 
-```C#
+```csharp
 Echo.Table(
     headers: new[] { "ColA", "ColB" },
 	colLines: new[] {
@@ -106,7 +118,7 @@ Echo.Table(
 
 #### 制表符边框表格
 
-```C#
+```csharp
 Echo.SeamlessTable(
     headers: new[] { "ColA", "ColB" },
 	colLines: new[] {
@@ -125,7 +137,7 @@ Echo.SeamlessTable(
 
 #### 无边框表格
 
-```C#
+```csharp
 Echo.NoBorderTable(
     headers: new[] { "ColA", "ColB" },
 	colLines: new[] {
@@ -164,9 +176,8 @@ Echo.Table(new[]
 
 #### 询问 Yes / No
 
-```C#
-bool answer;
-Echo.AskYN("Are you sure", yn => answer = yn)
+```csharp
+Echo.AskYN("Are you sure:", out var answer)
     .Line($"The answer: {answer}");
 ```
 
@@ -186,15 +197,30 @@ The answer: false
 
 #### 询问
 
-```C#
-string name;
-Echo.Ask("Input your name", answer => name = answer)
-    .Line($"Your name is {name}.");
+```csharp
+Echo.Ask("Input your name:", out string name)
+    .Ask("Age:", out int age)
+    .Line($"Your name is {name} (Age: {age}).");
 ```
 
 ```
 ? Input your name: jack
-Your name is jack.
+? Age: 30
+Your name is jack (Age: 30).
+```
+
+#### 询问多行
+
+```csharp
+Echo.Ask($"Mottos:{Environment.NewLine}", out var motto, endsWith: ";")
+    .Line($"The answer: {motto.Replace(Environment.NewLine, " ")}");
+```
+
+```
+? Mottos:
+Life is but a span.
+Write less, do more.;
+The answer: Life is but a span. Write less, do more.
 ```
 
 <br/>

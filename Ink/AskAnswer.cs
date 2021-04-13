@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace Ink
+﻿namespace Ink
 {
     public class AskAnswer
     {

@@ -20,43 +20,42 @@ namespace Ink
 
         public void Resolve(Action<AskAnswer> resolve)
         {
+        begin:
             var buffer = new StringBuilder();
-            while (true)
+            var answer = new AskAnswer();
+            if (Question is not null && Question.Length > 0)
             {
                 PrintAskHint?.Invoke();
-                if (Question is not null && Question.Length > 0) Cout.Print($"{Question} ");
+                if (Question.EndsWith(Environment.NewLine)) Cout.Print(Question);
+                else Cout.Print($"{Question} ");
+            }
 
-                var left = Console.CursorLeft;
-                var top = Console.CursorTop;
+            var left = Console.CursorLeft;
+            var top = Console.CursorTop;
 
+            while (true)
+            {
                 var line = Console.ReadLine();
                 buffer.Append(line);
-                var answer = new AskAnswer { Value = buffer.ToString() };
+                answer.Value = buffer.ToString();
                 resolve(answer);
 
-                if (answer.Action == AskAction.Default && answer is not null) answer.Action = AskAction.Accept;
+                if (answer.Action == AskAction.Default)
+                    answer.Action = answer.Value.IsWhiteSpace() ? AskAction.Retry : AskAction.Accept;
+
                 if (answer.Action == AskAction.Accept)
                 {
                     Console.SetCursorPosition(left, top);
                     Echo.Instance.Print(answer.Value, new ConColor { ForegroundColor = ConsoleColor.Cyan });
-                    if (answer.Value.GetLengthA() < line.GetLengthA()) Console.Write(" ".Repeat(line.GetLengthA() - answer.Value.GetLengthA()));
                     Console.WriteLine();
                     return;
-                }
-                else if (answer.Action == AskAction.Retry)
-                {
-#if NET35
-                    buffer.Length = 0;
-#else
-                    buffer.Clear();
-#endif
-                    continue;
                 }
                 else if (answer.Action == AskAction.Continue)
                 {
                     buffer.AppendLine();
                     continue;
                 }
+                else if (answer.Action == AskAction.Retry) goto begin;
                 else throw new NotImplementedException();
             }
         }

@@ -8,9 +8,8 @@ namespace InkApp
     {
         static void Main(string[] args)
         {
-            Echo.Left("Left").Line();
-            Echo.Center("Center").Line();
-            Echo.Right("Right").Line();
+            Echo.Left("Left").Center("Center").Right("Right").Line();
+            Echo.CoverLeft("Left").CoverCenter("Center").CoverRight("Right").Line();
 
             string name = "";
             Echo.Ask("What's your name?", answer =>
@@ -18,14 +17,13 @@ namespace InkApp
                 if (answer.Value.IsNullOrWhiteSpace()) answer.Action = AskAction.Retry;
                 else name = answer.Value = answer.Value.CapitalizeFirst();
             });
-            Echo.Ask("Motto:", out var motto);
-            
-            Echo.Line()
-                .Line("Press ENTER to continue...")
+            Echo.Ask($"Mottos:{Environment.NewLine}", out var mottos, endsWith: Environment.NewLine);
+
+            Echo.Line("Press ENTER to continue...")
                 .PressContinue(ConsoleKey.Enter)
                 .Line()
                 .Line($"Hello, {name}!")
-                .Line($"Your motto is: {motto}")
+                .Line($"Your mottos are: {mottos.Replace(Environment.NewLine, " | ")}")
                 .Line($"You can manage the following categories:")
                 .Table(Categories);
 

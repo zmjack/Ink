@@ -6,10 +6,27 @@ using System.Threading;
 
 namespace Ink
 {
-    public partial class ConOut
+    public class ConOut
     {
         internal ConOut()
         {
+        }
+
+        public ConColor ConsoleColor
+        {
+            get
+            {
+                return new ConColor
+                {
+                    BackgroundColor = Console.BackgroundColor,
+                    ForegroundColor = Console.ForegroundColor,
+                };
+            }
+            set
+            {
+                Console.BackgroundColor = value.BackgroundColor;
+                Console.ForegroundColor = value.ForegroundColor;
+            }
         }
 
         public ConOut ClearRow()
@@ -55,10 +72,10 @@ namespace Ink
             if (color is null) Process();
             else
             {
-                var originColor = ConColor;
-                ConColor = color;
+                var originColor = ConsoleColor;
+                ConsoleColor = color;
                 Process();
-                ConColor = originColor;
+                ConsoleColor = originColor;
             }
 
             return this;
@@ -73,7 +90,15 @@ namespace Ink
                 return this;
             }
         }
-
+        public ConOut Center(string line, ConColor color = null)
+        {
+            using (new InkScope())
+            {
+                RowBeginning();
+                Print($"{line.Center(Console.WindowWidth)}", color);
+                return this;
+            }
+        }
         public ConOut Right(string line, ConColor color = null)
         {
             using (new InkScope())
@@ -84,12 +109,43 @@ namespace Ink
             }
         }
 
-        public ConOut Center(string line, ConColor color = null)
+        public ConOut CoverLeft(string line, ConColor color = null)
         {
             using (new InkScope())
             {
                 RowBeginning();
-                Print($"{line.Center(Console.WindowWidth)}", color);
+                Console.SetCursorPosition(0, Console.CursorTop);
+                Print(line, color);
+                return this;
+            }
+        }
+        public ConOut CoverCenter(string line, ConColor color = null)
+        {
+            using (new InkScope())
+            {
+                var len = line.GetLengthA();
+                int left;
+                if (Console.WindowWidth <= len) left = 0;
+                else
+                {
+                    var total = Console.WindowWidth - len;
+                    left = total / 2;
+                    if (total.IsOdd()) left += 1;
+                }
+
+                RowBeginning();
+                Console.SetCursorPosition(left, Console.CursorTop);
+                Print(line, color);
+                return this;
+            }
+        }
+        public ConOut CoverRight(string line, ConColor color = null)
+        {
+            using (new InkScope())
+            {
+                RowBeginning();
+                Console.SetCursorPosition(Console.WindowWidth - line.GetLengthA(), Console.CursorTop);
+                Print(line, color);
                 return this;
             }
         }
@@ -174,6 +230,49 @@ namespace Ink
             value = _value;
             return this;
         }
+
+        public ConOut Ask(string question, out string value, string endsWith, bool includeEndsWith)
+        {
+            string _value = null;
+            var ask = new ConAsk(this, question);
+            ask.Resolve(answer =>
+            {
+                if (answer.Value.EndsWith(endsWith))
+                {
+                    if (!includeEndsWith) answer.Value = answer.Value.Substring(0, answer.Value.Length - endsWith.Length);
+                    answer.Action = AskAction.Accept;
+                    _value = answer.Value;
+                }
+                else answer.Action = AskAction.Continue;
+            });
+            value = _value;
+            return this;
+        }
+
+        protected ConOut InnerAsk<T>(string question, out T value) where T : unmanaged
+        {
+            T _value = default;
+            var ask = new ConAsk(this, question);
+            ask.Resolve(answer =>
+            {
+                try { _value = (T)Convert.ChangeType(answer.Value, typeof(T)); }
+                catch { answer.Action = AskAction.Retry; }
+            });
+            value = _value;
+            return this;
+        }
+        public ConOut Ask(string question, out byte value) => InnerAsk(question, out value);
+        public ConOut Ask(string question, out sbyte value) => InnerAsk(question, out value);
+        public ConOut Ask(string question, out short value) => InnerAsk(question, out value);
+        public ConOut Ask(string question, out ushort value) => InnerAsk(question, out value);
+        public ConOut Ask(string question, out int value) => InnerAsk(question, out value);
+        public ConOut Ask(string question, out uint value) => InnerAsk(question, out value);
+        public ConOut Ask(string question, out long value) => InnerAsk(question, out value);
+        public ConOut Ask(string question, out ulong value) => InnerAsk(question, out value);
+        public ConOut Ask(string question, out float value) => InnerAsk(question, out value);
+        public ConOut Ask(string question, out double value) => InnerAsk(question, out value);
+        public ConOut Ask(string question, out decimal value) => InnerAsk(question, out value);
+        public ConOut Ask(string question, out DateTime value) => InnerAsk(question, out value);
 
         public ConOut AskYN(string question, out bool value)
         {
