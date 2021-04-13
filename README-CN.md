@@ -79,8 +79,6 @@ Echo.CoverLeft("Left").CoverCenter("Center").CoverRight("Right");
 Left        Center        Right
 ```
 
-####
-
 #### 多列格式化输出
 
 ```csharp
@@ -177,7 +175,7 @@ Echo.Table(new[]
 #### 询问 Yes / No
 
 ```csharp
-Echo.AskYN("Are you sure:", out var answer)
+Echo.AskYN("Are you sure:", out string answer)
     .Line($"The answer: {answer}");
 ```
 

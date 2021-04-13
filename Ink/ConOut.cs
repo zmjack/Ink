@@ -215,64 +215,56 @@ namespace Ink
             return this;
         }
 
-        public ConOut Ask(string question, Action<AskAnswer> resolve)
-        {
-            var ask = new ConAsk(this, question);
-            ask.Resolve(resolve);
-            return this;
-        }
-
-        public ConOut Ask(string question, out string value)
-        {
-            string _value = null;
-            var ask = new ConAsk(this, question);
-            ask.Resolve(answer => _value = answer.Value);
-            value = _value;
-            return this;
-        }
-
-        public ConOut Ask(string question, out string value, string endsWith, bool includeEndsWith)
-        {
-            string _value = null;
-            var ask = new ConAsk(this, question);
-            ask.Resolve(answer =>
-            {
-                if (answer.Value.EndsWith(endsWith))
-                {
-                    if (!includeEndsWith) answer.Value = answer.Value.Substring(0, answer.Value.Length - endsWith.Length);
-                    answer.Action = AskAction.Accept;
-                    _value = answer.Value;
-                }
-                else answer.Action = AskAction.Continue;
-            });
-            value = _value;
-            return this;
-        }
-
-        protected ConOut InnerAsk<T>(string question, out T value) where T : unmanaged
+        protected ConOut AskResolve<T>(string question, out T value, Action<AskAnswer> followResolve, bool whitespaceRetry, T defaultValue)
         {
             T _value = default;
             var ask = new ConAsk(this, question);
             ask.Resolve(answer =>
             {
-                try { _value = (T)Convert.ChangeType(answer.Value, typeof(T)); }
+                if (answer.Value.IsWhiteSpace())
+                {
+                    if (whitespaceRetry) { answer.Action = AskAction.Retry; return; }
+                    else
+                    {
+                        answer.Action = AskAction.Accept;
+                        answer.Value = defaultValue?.ToString();
+                        _value = defaultValue; return;
+                    }
+                }
+
+                try
+                {
+                    followResolve(answer);
+                    if (answer.Action == AskAction.Accept) _value = (T)Convert.ChangeType(answer.Value, typeof(T));
+                }
                 catch { answer.Action = AskAction.Retry; }
             });
             value = _value;
             return this;
         }
-        public ConOut Ask(string question, out byte value) => InnerAsk(question, out value);
-        public ConOut Ask(string question, out sbyte value) => InnerAsk(question, out value);
-        public ConOut Ask(string question, out short value) => InnerAsk(question, out value);
-        public ConOut Ask(string question, out ushort value) => InnerAsk(question, out value);
-        public ConOut Ask(string question, out int value) => InnerAsk(question, out value);
-        public ConOut Ask(string question, out uint value) => InnerAsk(question, out value);
-        public ConOut Ask(string question, out long value) => InnerAsk(question, out value);
-        public ConOut Ask(string question, out ulong value) => InnerAsk(question, out value);
-        public ConOut Ask(string question, out float value) => InnerAsk(question, out value);
-        public ConOut Ask(string question, out double value) => InnerAsk(question, out value);
-        public ConOut Ask(string question, out decimal value) => InnerAsk(question, out value);
-        public ConOut Ask(string question, out DateTime value) => InnerAsk(question, out value);
+
+        public ConOut Ask<T>(string question, out T value, Action<AskAnswer> followResolve) => AskResolve(question, out value, followResolve, true, default);
+        public ConOut Ask<T>(string question, out T value) => AskResolve(question, out value, answer => answer.Action = AskAction.Accept, true, default);
+        public ConOut Ask<T>(string question, out T value, T defaultValue) => AskResolve(question, out value, answer => answer.Action = AskAction.Accept, false, defaultValue);
+
+        protected void AskMultilineFollowResolve(AskAnswer answer, string endsWith, bool includeEndsWith)
+        {
+            if (answer.Value.EndsWith(endsWith))
+            {
+                if (!includeEndsWith) answer.Value = answer.Value.Substring(0, answer.Value.Length - endsWith.Length);
+                answer.Action = AskAction.Accept;
+            }
+            else answer.Action = AskAction.Continue;
+        }
+
+        public ConOut Ask(string question, out string value, string endsWith, bool includeEndsWith)
+        {
+            return AskResolve(question, out value, answer => AskMultilineFollowResolve(answer, endsWith, includeEndsWith), true, default);
+        }
+        public ConOut Ask(string question, out string value, string endsWith, bool includeEndsWith, string defaultValue)
+        {
+            return AskResolve(question, out value, answer => AskMultilineFollowResolve(answer, endsWith, includeEndsWith), false, defaultValue);
+        }
 
         public ConOut AskYN(string question, out bool value)
         {

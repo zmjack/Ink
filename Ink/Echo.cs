@@ -33,22 +33,11 @@ namespace Ink
         public static ConOut SeamlessTable<TModel>(IEnumerable<TModel> models) => Instance.SeamlessTable(models);
         public static ConOut SeamlessTable(string[] headers, string[][] colLines, int[] lengths) => Instance.SeamlessTable(headers, colLines, lengths);
 
-        public static ConOut Ask(string question, Action<AskAnswer> resolve) => Instance.Ask(question, resolve);
-        public static ConOut Ask(string question, out string value) => Instance.Ask(question, out value);
-        public static ConOut Ask(string question, out string value, string endsWith, bool includeEndsWith = false) => Instance.Ask(question, out value, endsWith, includeEndsWith);
-
-        public static ConOut Ask(string question, out byte value) => Instance.Ask(question, out value);
-        public static ConOut Ask(string question, out sbyte value) => Instance.Ask(question, out value);
-        public static ConOut Ask(string question, out short value) => Instance.Ask(question, out value);
-        public static ConOut Ask(string question, out ushort value) => Instance.Ask(question, out value);
-        public static ConOut Ask(string question, out int value) => Instance.Ask(question, out value);
-        public static ConOut Ask(string question, out uint value) => Instance.Ask(question, out value);
-        public static ConOut Ask(string question, out long value) => Instance.Ask(question, out value);
-        public static ConOut Ask(string question, out ulong value) => Instance.Ask(question, out value);
-        public static ConOut Ask(string question, out float value) => Instance.Ask(question, out value);
-        public static ConOut Ask(string question, out double value) => Instance.Ask(question, out value);
-        public static ConOut Ask(string question, out decimal value) => Instance.Ask(question, out value);
-        public static ConOut Ask(string question, out DateTime value) => Instance.Ask(question, out value);
+        public static ConOut Ask<T>(string question, out T value, Action<AskAnswer> followResolve) => Instance.Ask(question, out value, followResolve);
+        public static ConOut Ask<T>(string question, out T value) => Instance.Ask(question, out value);
+        public static ConOut Ask<T>(string question, out T value, T defaultValue) => Instance.Ask(question, out value, defaultValue);
+        public static ConOut Ask(string question, out string value, string endsWith, bool includeEndsWith) => Instance.Ask(question, out value, endsWith, includeEndsWith);
+        public static ConOut Ask(string question, out string value, string endsWith, bool includeEndsWith, string defaultValue) => Instance.Ask(question, out value, endsWith, includeEndsWith, defaultValue);
 
         public static ConOut AskYN(string question, out bool value) => Instance.AskYN(question, out value);
         public static ConOut PressContinue() => Instance.PressContinue();

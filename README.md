@@ -175,7 +175,7 @@ Echo.Table(new[]
 #### Ask Yes / No
 
 ```C#
-Echo.AskYN("Are you sure:", out var answer)
+Echo.AskYN("Are you sure:", out string answer)
     .Line($"The answer: {answer}");
 ```
 

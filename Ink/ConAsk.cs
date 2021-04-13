@@ -35,16 +35,20 @@ namespace Ink
 
             while (true)
             {
+                answer.Action = AskAction.Default;
+
                 var line = Console.ReadLine();
                 buffer.Append(line);
-                answer.Value = buffer.ToString();
+                var bufferString = buffer.ToString();
+                answer.Value = bufferString;
                 resolve(answer);
 
-                if (answer.Action == AskAction.Default)
-                    answer.Action = answer.Value.IsWhiteSpace() ? AskAction.Retry : AskAction.Accept;
+                if (answer.Action == AskAction.Default) throw new InvalidOperationException($"AskAnswer.Action must be changed in the method.");
 
                 if (answer.Action == AskAction.Accept)
                 {
+                    Console.SetCursorPosition(left, top);
+                    Echo.Instance.Print(" ".Repeat(bufferString.GetLengthA()));
                     Console.SetCursorPosition(left, top);
                     Echo.Instance.Print(answer.Value, new ConColor { ForegroundColor = ConsoleColor.Cyan });
                     Console.WriteLine();

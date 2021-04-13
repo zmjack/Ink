@@ -11,13 +11,18 @@ namespace InkApp
             Echo.Left("Left").Center("Center").Right("Right").Line();
             Echo.CoverLeft("Left").CoverCenter("Center").CoverRight("Right").Line();
 
-            string name = "";
-            Echo.Ask("What's your name?", answer =>
+            Echo.Ask("What's your name?", out string name, answer =>
             {
                 if (answer.Value.IsNullOrWhiteSpace()) answer.Action = AskAction.Retry;
-                else name = answer.Value = answer.Value.CapitalizeFirst();
+                else
+                {
+                    answer.Action = AskAction.Accept;
+                    answer.Value = answer.Value.CapitalizeFirst();
+                }
             });
-            Echo.Ask($"Mottos:{Environment.NewLine}", out var mottos, endsWith: Environment.NewLine);
+            Echo.Ask("What's your nickname?", out string nickname, "jj");
+            Echo.Ask("How old are you?", out int age, 22);
+            Echo.Ask($"Mottos:{Environment.NewLine}", out var mottos, endsWith: Environment.NewLine, false);
 
             Echo.Line("Press ENTER to continue...")
                 .PressContinue(ConsoleKey.Enter)
