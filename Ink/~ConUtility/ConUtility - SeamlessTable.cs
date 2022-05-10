@@ -31,9 +31,11 @@ namespace Ink
             {
                 foreach (var model in models)
                 {
-                    var len = kv.Value.GetValue(model)?.ToString().GetLengthA() ?? 0;
-                    if (len > lengths[kv.Key])
-                        lengths[kv.Key] = len;
+                    if (kv.Key < lengths.Length && lengths[kv.Key] < 0)
+                    {
+                        var len = kv.Value.GetValue(model)?.ToString().GetLengthA() ?? 0;
+                        if (len > lengths[kv.Key]) lengths[kv.Key] = len;
+                    }
                 }
             }
 
@@ -65,7 +67,7 @@ namespace Ink
                 TreatDBytesTableLineAsByte = true,
             }));
 
-            if (!(headers is null))
+            if (headers is not null)
             {
                 sb.AppendLine(GetAlignConsoleLine(headers, new AlignLineOptions
                 {

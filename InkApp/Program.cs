@@ -46,7 +46,7 @@ namespace InkApp
             public string Description { get; set; }
         }
 
-        private static Category[] Categories = new[]
+        private static readonly Category[] Categories = new[]
         {
             new Category { CategoryID = 1, CategoryName = "Beverages", Description = "Soft drinks, coffees, teas, beers, and ales" },
             new Category { CategoryID = 2, CategoryName = "Condiments", Description = "Sweet and savory sauces, relishes, spreads, and seasonings" },

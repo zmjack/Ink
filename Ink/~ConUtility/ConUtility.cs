@@ -27,8 +27,7 @@ namespace Ink
 
         public static string GetAlignConsoleLine(string[] cols, AlignLineOptions options)
         {
-            if (cols.Length != options.Lengths.Length)
-                throw new ArgumentException($"The length of the argument `{nameof(cols)}` and `{nameof(options.Lengths)}` must be same.");
+            if (cols.Length != options.Lengths.Length) throw new ArgumentException($"The length of the argument `{nameof(cols)}` and `{nameof(options.Lengths)}` must be same.");
 
             var lineCols = new string[cols.Length];
             Array.Copy(cols, lineCols, cols.Length);
@@ -56,8 +55,7 @@ namespace Ink
                         {
                             var chLengthA = options.GetCharLengthA(lineCol[i]);
 
-                            if (lineLengthA + chLengthA <= length)
-                                lineLengthA += chLengthA;
+                            if (lineLengthA + chLengthA <= length) lineLengthA += chLengthA;
                             else
                             {
                                 var lineContent = lineCol.Substring(0, i);
