@@ -10,7 +10,7 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageTags>Console Echo</PackageTags>
     <Copyright>Copyright © dawnx.net 2019-2020</Copyright>
-    <Version>0.7.1</Version>
+    <Version>0.8.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Ink</PackageId>
     <Product>Ink</Product>
@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NStandard" Version="0.6.13" />
+    <PackageReference Include="NStandard" Version="0.9.4" />
   </ItemGroup>
 
 </Project>

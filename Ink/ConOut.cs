@@ -182,9 +182,9 @@ namespace Ink
             return this;
         }
 
-        public ConOut Table<TModel>(IEnumerable<TModel> models)
+        public ConOut Table<TModel>(IEnumerable<TModel> models, int[] lengths = null)
         {
-            Console.Write(ConUtility.Table(models));
+            Console.Write(ConUtility.Table(models, lengths));
             return this;
         }
         public ConOut Table(string[] headers, string[][] colLines, int[] lengths)
@@ -193,9 +193,9 @@ namespace Ink
             return this;
         }
 
-        public ConOut NoBorderTable<TModel>(IEnumerable<TModel> models)
+        public ConOut NoBorderTable<TModel>(IEnumerable<TModel> models, int[] lengths = null)
         {
-            Console.Write(ConUtility.NoBorderTable(models));
+            Console.Write(ConUtility.NoBorderTable(models, lengths));
             return this;
         }
         public ConOut NoBorderTable(string[] headers, string[][] colLines, int[] lengths)
@@ -204,9 +204,9 @@ namespace Ink
             return this;
         }
 
-        public ConOut SeamlessTable<TModel>(IEnumerable<TModel> models)
+        public ConOut SeamlessTable<TModel>(IEnumerable<TModel> models, int[] lengths = null)
         {
-            Console.Write(ConUtility.SeamlessTable(models));
+            Console.Write(ConUtility.SeamlessTable(models, lengths));
             return this;
         }
         public ConOut SeamlessTable(string[] headers, string[][] colLines, int[] lengths)

@@ -11,7 +11,7 @@ namespace Ink.Test
             public string Description { get; set; }
         }
 
-        private static Category[] Categories = new[]
+        private static readonly Category[] Categories = new[]
         {
             new Category { CategoryID = 1, CategoryName = "Beverages", Description = "Soft drinks, coffees, teas, beers, and ales" },
             new Category { CategoryID = 2, CategoryName = "Condiments", Description = "Sweet and savory sauces, relishes, spreads, and seasonings" },
@@ -39,7 +39,7 @@ namespace Ink.Test
 | 7          | Produce        | Dried fruit and bean curd                                  |
 | 8          | Seafood        | Seaweed and fish                                           |
 +------------+----------------+------------------------------------------------------------+
-", ConUtility.Table(Categories));
+", ConUtility.Table(Categories, null));
         }
 
         [Fact]

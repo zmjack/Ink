@@ -12,23 +12,27 @@ namespace Ink
         /// </summary>
         /// <typeparam name="TModel"></typeparam>
         /// <param name="models"></param>
-        public static string Table<TModel>(IEnumerable<TModel> models)
+        public static string Table<TModel>(IEnumerable<TModel> models, int[] lengths = null)
         {
             var props = typeof(TModel).GetProperties();
-            var lengths = new int[props.Length];
             var line = new StringBuilder();
 
             // Calculate lengths of each column
-            foreach (var kv in props.AsKvPairs())
-                lengths[kv.Key] = kv.Value.Name.GetLengthA();
+            if (lengths is null)
+            {
+                lengths = new int[props.Length];
+                foreach (var kv in props.AsKvPairs())
+                {
+                    lengths[kv.Key] = kv.Value.Name.GetLengthA();
+                }
+            }
 
             foreach (var kv in props.AsKvPairs())
             {
                 foreach (var model in models)
                 {
                     var len = kv.Value.GetValue(model)?.ToString().GetLengthA() ?? 0;
-                    if (len > lengths[kv.Key])
-                        lengths[kv.Key] = len;
+                    if (len > lengths[kv.Key]) lengths[kv.Key] = len;
                 }
             }
 
