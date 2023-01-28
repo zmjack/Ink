@@ -16,25 +16,40 @@ namespace Ink
         {
             var props = typeof(TModel).GetProperties();
             var line = new StringBuilder();
+            var autoSize = lengths is null;
 
             // Calculate lengths of each column
             if (lengths is null)
             {
                 lengths = new int[props.Length];
-                foreach (var kv in props.AsKvPairs())
+#if NETSTANDARD2_0_OR_GREATER
+                foreach (var kv in props.AsIndexValuePairs())
                 {
-                    lengths[kv.Key] = kv.Value.Name.GetLengthA();
+                    var index = kv.Index;
+#else
+                foreach (var kv in props.AsKeyValuePairs())
+                {
+                    var index = kv.Key;
+#endif
+                    lengths[index] = kv.Value.Name.GetLengthA();
                 }
             }
 
-            foreach (var kv in props.AsKvPairs())
+#if NETSTANDARD2_0_OR_GREATER
+            foreach (var kv in props.AsIndexValuePairs())
             {
+                var index = kv.Index;
+#else
+            foreach (var kv in props.AsKeyValuePairs())
+            {
+                var index = kv.Key;
+#endif
                 foreach (var model in models)
                 {
-                    if (kv.Key < lengths.Length && lengths[kv.Key] < 0)
+                    if (autoSize || (index < lengths.Length && lengths[index] < 0))
                     {
                         var len = kv.Value.GetValue(model)?.ToString().GetLengthA() ?? 0;
-                        if (len > lengths[kv.Key]) lengths[kv.Key] = len;
+                        if (len > lengths[index]) lengths[index] = len;
                     }
                 }
             }

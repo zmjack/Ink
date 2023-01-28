@@ -39,14 +39,23 @@ namespace Ink
             while (needNewLine)
             {
                 needNewLine = false;
-                foreach (var kv in lineCols.AsKvPairs())
+
+#if NETSTANDARD2_0_OR_GREATER
+                foreach (var kv in lineCols.AsIndexValuePairs())
                 {
+                    var index = kv.Index;
+#else
+                foreach (var kv in lineCols.AsKeyValuePairs())
+                {
+                    var index = kv.Key;
+#endif
+
                     var lineCol = kv.Value;
-                    var length = options.Lengths[kv.Key];
+                    var length = options.Lengths[index];
 
                     if (options.GetStringLengthA(lineCol) <= length)
                     {
-                        lineCols[kv.Key] = "";
+                        lineCols[index] = "";
                         cellList.Add(lineCol.PadRightA(length));
                     }
                     else
@@ -61,7 +70,7 @@ namespace Ink
                                 var lineContent = lineCol.Substring(0, i);
                                 cellList.Add(lineContent.PadRightA(length));
 
-                                lineCols[kv.Key] = lineCol.Substring(i);
+                                lineCols[index] = lineCol.Substring(i);
                                 needNewLine = true;
                                 break;
                             }
