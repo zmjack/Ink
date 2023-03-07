@@ -8,12 +8,57 @@ namespace Ink
 {
     public partial class ConUtility
     {
+        private static int[] GetLengths(string[] headers, string[][] lines)
+        {
+            var lengths = new int[headers.Length];
+            foreach (var (index, value) in headers.AsIndexValuePairs())
+            {
+                lengths[index] = value.GetLengthA();
+            }
+
+            foreach (var line in lines)
+            {
+                foreach (var (index, value) in line.AsIndexValuePairs())
+                {
+                    if (index < lengths.Length)
+                    {
+                        var len = value.GetLengthA();
+                        if (len > lengths[index]) lengths[index] = len;
+                    }
+                }
+            }
+
+            return lengths;
+        }
+
         public class AlignLineOptions
         {
             public bool OverflowHidden { get; set; } = false;
             public bool TreatDBytesTableLineAsByte { get; set; } = false;
             public string[] Borders { get; set; } = new[] { "", "  ", "" };
-            public int[] Lengths { get; set; } = null;
+
+#if NET5_0_OR_GREATER || NETSTANDARD1_0_OR_GREATER || NET46_OR_GREATER
+            private int[] _lengths = Array.Empty<int>();
+#else
+            private int[] _lengths = ArrayEx.Empty<int>();
+#endif
+            public int[] Lengths
+            {
+                get => _lengths;
+                set
+                {
+                    if (value is null)
+                    {
+
+#if NET5_0_OR_GREATER || NETSTANDARD1_0_OR_GREATER || NET46_OR_GREATER
+                        _lengths = Array.Empty<int>();
+#else
+                        _lengths = ArrayEx.Empty<int>();
+#endif
+                    }
+                    else _lengths = value.Select(x => x <= 0 ? 1 : x).ToArray();
+                }
+            }
 
             public int GetCharLengthA(char ch)
             {
@@ -72,8 +117,7 @@ namespace Ink
                 sb.AppendLine($"{options.Borders[0]}{cellList.Join(options.Borders[1])}{options.Borders[2]}");
                 cellList.Clear();
 
-                if (options.OverflowHidden)
-                    break;
+                if (options.OverflowHidden) break;
             }
 
             sb.Length -= Environment.NewLine.Length;

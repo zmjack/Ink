@@ -27,11 +27,11 @@ namespace Ink
         public static ConOut ColMove(int offsetCol) => Instance.ColMove(offsetCol);
 
         public static ConOut Table<TModel>(IEnumerable<TModel> models, int[] lengths = null) => Instance.Table(models, lengths);
-        public static ConOut Table(string[] headers, string[][] colLines, int[] lengths) => Instance.Table(headers, colLines, lengths);
+        public static ConOut Table(string[] headers, string[][] colLines, int[] lengths = null) => Instance.Table(headers, colLines, lengths);
         public static ConOut NoBorderTable<TModel>(IEnumerable<TModel> models, int[] lengths = null) => Instance.NoBorderTable(models, lengths);
-        public static ConOut NoBorderTable(string[] headers, string[][] colLines, int[] lengths) => Instance.NoBorderTable(headers, colLines, lengths);
+        public static ConOut NoBorderTable(string[] headers, string[][] colLines, int[] lengths = null) => Instance.NoBorderTable(headers, colLines, lengths);
         public static ConOut SeamlessTable<TModel>(IEnumerable<TModel> models, int[] lengths = null) => Instance.SeamlessTable(models, lengths);
-        public static ConOut SeamlessTable(string[] headers, string[][] colLines, int[] lengths) => Instance.SeamlessTable(headers, colLines, lengths);
+        public static ConOut SeamlessTable(string[] headers, string[][] colLines, int[] lengths = null) => Instance.SeamlessTable(headers, colLines, lengths);
 
         public static ConOut Ask<T>(string question, out T value, Action<AskAnswer> followResolve) => Instance.Ask(question, out value, followResolve);
         public static ConOut Ask<T>(string question, out T value) => Instance.Ask(question, out value);
