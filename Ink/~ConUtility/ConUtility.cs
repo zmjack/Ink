@@ -40,17 +40,8 @@ namespace Ink
             {
                 needNewLine = false;
 
-#if NETSTANDARD2_0_OR_GREATER
-                foreach (var kv in lineCols.AsIndexValuePairs())
+                foreach (var (index, lineCol) in lineCols.AsIndexValuePairs())
                 {
-                    var index = kv.Index;
-#else
-                foreach (var kv in lineCols.AsKeyValuePairs())
-                {
-                    var index = kv.Key;
-#endif
-
-                    var lineCol = kv.Value;
                     var length = options.Lengths[index];
 
                     if (options.GetStringLengthA(lineCol) <= length)

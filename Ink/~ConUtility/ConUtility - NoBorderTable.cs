@@ -22,33 +22,19 @@ namespace Ink
             if (lengths is null)
             {
                 lengths = new int[props.Length];
-#if NETSTANDARD2_0_OR_GREATER
-                foreach (var kv in props.AsIndexValuePairs())
+                foreach (var (index, value) in props.AsIndexValuePairs())
                 {
-                    var index = kv.Index;
-#else
-                foreach (var kv in props.AsKeyValuePairs())
-                {
-                    var index = kv.Key;
-#endif
-                    lengths[index] = kv.Value.Name.GetLengthA();
+                    lengths[index] = value.Name.GetLengthA();
                 }
             }
 
-#if NETSTANDARD2_0_OR_GREATER
-            foreach (var kv in props.AsIndexValuePairs())
+            foreach (var (index, value) in props.AsIndexValuePairs())
             {
-                var index = kv.Index;
-#else
-            foreach (var kv in props.AsKeyValuePairs())
-            {
-                var index = kv.Key;
-#endif
                 foreach (var model in models)
                 {
                     if (autoSize || (index < lengths.Length && lengths[index] < 0))
                     {
-                        var len = kv.Value.GetValue(model)?.ToString().GetLengthA() ?? 0;
+                        var len = value.GetValue(model)?.ToString().GetLengthA() ?? 0;
                         if (len > lengths[index]) lengths[index] = len;
                     }
                 }
