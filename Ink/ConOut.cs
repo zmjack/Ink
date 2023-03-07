@@ -187,7 +187,7 @@ namespace Ink
             Console.Write(ConUtility.Table(models, lengths));
             return this;
         }
-        public ConOut Table(string[] headers, string[][] colLines, int[] lengths)
+        public ConOut Table(string[] headers, string[][] colLines, int[] lengths = null)
         {
             Console.Write(ConUtility.Table(headers, colLines, lengths));
             return this;
@@ -198,7 +198,7 @@ namespace Ink
             Console.Write(ConUtility.NoBorderTable(models, lengths));
             return this;
         }
-        public ConOut NoBorderTable(string[] headers, string[][] colLines, int[] lengths)
+        public ConOut NoBorderTable(string[] headers, string[][] colLines, int[] lengths = null)
         {
             Console.Write(ConUtility.NoBorderTable(headers, colLines, lengths));
             return this;
@@ -209,7 +209,7 @@ namespace Ink
             Console.Write(ConUtility.SeamlessTable(models, lengths));
             return this;
         }
-        public ConOut SeamlessTable(string[] headers, string[][] colLines, int[] lengths)
+        public ConOut SeamlessTable(string[] headers, string[][] colLines, int[] lengths = null)
         {
             Console.Write(ConUtility.SeamlessTable(headers, colLines, lengths));
             return this;

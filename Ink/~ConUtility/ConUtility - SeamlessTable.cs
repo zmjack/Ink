@@ -26,7 +26,7 @@ namespace Ink
         /// <param name="headers"></param>
         /// <param name="lines"></param>
         /// <param name="lengths"></param>
-        public static string SeamlessTable(string[] headers, string[][] lines, int[] lengths)
+        public static string SeamlessTable(string[] headers, string[][] lines, int[] lengths = null)
         {
             lengths ??= GetLengths(headers, lines);
 
