@@ -12,7 +12,7 @@
             var options = new AlignLineOptions
             {
                 Lengths = colLengths,
-                Borders = new[] { "", "  ", "" },
+                Borders = ["", "  ", ""],
                 TreatDBytesTableLineAsByte = false,
                 OverflowHidden = true,
             };

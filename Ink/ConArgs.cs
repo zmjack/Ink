@@ -72,7 +72,7 @@ namespace Ink
             {
                 if (Properties.ContainsKey(key))
                     return Properties[key].ToArray();
-                else return new string[0];
+                else return [];
             }
         }
 

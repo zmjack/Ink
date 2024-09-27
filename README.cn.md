@@ -3,7 +3,7 @@
 Ink 是个易于使用的用于控制控制台格式化输出的工具库。
 
 - [English Readme](https://github.com/zmjack/Ink/blob/master/README.md)
-- [中文自述](https://github.com/zmjack/Ink/blob/master/README-CN.md)
+- [中文自述](https://github.com/zmjack/Ink/blob/master/README.cn.md)
 
 <br/>
 

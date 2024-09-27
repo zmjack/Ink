@@ -11,8 +11,8 @@ namespace Ink.Test
             public string Description { get; set; }
         }
 
-        private static readonly Category[] Categories = new[]
-        {
+        private static readonly Category[] Categories =
+        [
             new Category { CategoryID = 1, CategoryName = "Beverages", Description = "Soft drinks, coffees, teas, beers, and ales" },
             new Category { CategoryID = 2, CategoryName = "Condiments", Description = "Sweet and savory sauces, relishes, spreads, and seasonings" },
             new Category { CategoryID = 3, CategoryName = "Confections", Description = "Desserts, candies, and sweet breads" },
@@ -21,13 +21,15 @@ namespace Ink.Test
             new Category { CategoryID = 6, CategoryName = "Meat/Poultry", Description = "Prepared meats" },
             new Category { CategoryID = 7, CategoryName = "Produce", Description = "Dried fruit and bean curd" },
             new Category { CategoryID = 8, CategoryName = "Seafood", Description = "Seaweed and fish" },
-        };
+        ];
 
         [Fact]
         public void BorderTableTest()
         {
+            var actual = ConUtility.Table(Categories, null);
             Assert.Equal(
-@"+------------+----------------+------------------------------------------------------------+
+"""
++------------+----------------+------------------------------------------------------------+
 | CategoryID | CategoryName   | Description                                                |
 +------------+----------------+------------------------------------------------------------+
 | 1          | Beverages      | Soft drinks, coffees, teas, beers, and ales                |
@@ -39,14 +41,18 @@ namespace Ink.Test
 | 7          | Produce        | Dried fruit and bean curd                                  |
 | 8          | Seafood        | Seaweed and fish                                           |
 +------------+----------------+------------------------------------------------------------+
-", ConUtility.Table(Categories, null));
+
+""", actual);
         }
 
         [Fact]
         public void NoBorderTableTest()
         {
+            var actual = ConUtility.NoBorderTable(Categories);
             Assert.Equal(
-@"CategoryID  CategoryName    Description                                               
+"""
+CategoryID  CategoryName    Description                                               
+==========  ==============  ==========================================================
 1           Beverages       Soft drinks, coffees, teas, beers, and ales               
 2           Condiments      Sweet and savory sauces, relishes, spreads, and seasonings
 3           Confections     Desserts, candies, and sweet breads                       
@@ -55,14 +61,17 @@ namespace Ink.Test
 6           Meat/Poultry    Prepared meats                                            
 7           Produce         Dried fruit and bean curd                                 
 8           Seafood         Seaweed and fish                                          
-", ConUtility.NoBorderTable(Categories));
+
+""", actual);
         }
 
         [Fact]
         public void CreateSeamlessTableTest()
         {
+            var actual = ConUtility.SeamlessTable(Categories);
             Assert.Equal(
-@"©°©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ð©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ð©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©´
+"""
+©°©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ð©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ð©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©´
 ©¦ CategoryID©¦ CategoryName  ©¦ Description                                               ©¦
 ©À©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©à©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©È
 ©¦ 1         ©¦ Beverages     ©¦ Soft drinks, coffees, teas, beers, and ales               ©¦
@@ -74,7 +83,8 @@ namespace Ink.Test
 ©¦ 7         ©¦ Produce       ©¦ Dried fruit and bean curd                                 ©¦
 ©¦ 8         ©¦ Seafood       ©¦ Seaweed and fish                                          ©¦
 ©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ø©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©Ø©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼
-", ConUtility.SeamlessTable(Categories));
+
+""", actual);
         }
 
     }

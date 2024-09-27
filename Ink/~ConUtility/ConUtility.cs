@@ -11,14 +11,14 @@ namespace Ink
         private static int[] GetLengths(string[] headers, string[][] lines)
         {
             var lengths = new int[headers.Length];
-            foreach (var (index, value) in headers.AsIndexValuePairs())
+            foreach (var (index, value) in headers.Pairs())
             {
                 lengths[index] = value.GetLengthA();
             }
 
             foreach (var line in lines)
             {
-                foreach (var (index, value) in line.AsIndexValuePairs())
+                foreach (var (index, value) in line.Pairs())
                 {
                     if (index < lengths.Length)
                     {
@@ -35,7 +35,7 @@ namespace Ink
         {
             public bool OverflowHidden { get; set; } = false;
             public bool TreatDBytesTableLineAsByte { get; set; } = false;
-            public string[] Borders { get; set; } = new[] { "", "  ", "" };
+            public string[] Borders { get; set; } = ["", "  ", ""];
 
 #if NET5_0_OR_GREATER || NETSTANDARD1_0_OR_GREATER || NET46_OR_GREATER
             private int[] _lengths = Array.Empty<int>();
@@ -85,7 +85,7 @@ namespace Ink
             {
                 needNewLine = false;
 
-                foreach (var (index, lineCol) in lineCols.AsIndexValuePairs())
+                foreach (var (index, lineCol) in lineCols.Pairs())
                 {
                     var length = options.Lengths[index];
 

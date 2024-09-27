@@ -33,7 +33,7 @@ namespace Ink
             var options = new AlignLineOptions
             {
                 Lengths = lengths,
-                Borders = new[] { "", "  ", "" },
+                Borders = ["", "  ", ""],
                 TreatDBytesTableLineAsByte = false,
             };
 

@@ -8,6 +8,9 @@ namespace Ink
 {
     public class ConOut
     {
+        public readonly string[] _yesWords = ["y", "yes", "Y", "YES", "Yes"];
+        public readonly string[] _noWords = ["n", "no", "N", "NO", "No"];
+
         internal ConOut()
         {
         }
@@ -162,22 +165,22 @@ namespace Ink
 
         public ConOut Move(int offsetRow, int offsetCol)
         {
-            var left = (Console.CursorLeft - offsetCol).For(x => x >= 0 ? x : 0);
-            var top = (Console.CursorTop - offsetRow).For(x => x >= 0 ? x : 0);
+            var left = (Console.CursorLeft - offsetCol).Pipe(x => x >= 0 ? x : 0);
+            var top = (Console.CursorTop - offsetRow).Pipe(x => x >= 0 ? x : 0);
             Console.SetCursorPosition(left, top);
             return this;
         }
 
         public ConOut RowMove(int offsetRow)
         {
-            var top = (Console.CursorTop - offsetRow).For(x => x >= 0 ? x : 0);
+            var top = (Console.CursorTop - offsetRow).Pipe(x => x >= 0 ? x : 0);
             Console.SetCursorPosition(Console.CursorLeft, top);
             return this;
         }
 
         public ConOut ColMove(int offsetCol)
         {
-            var left = (Console.CursorLeft - offsetCol).For(x => x >= 0 ? x : 0);
+            var left = (Console.CursorLeft - offsetCol).Pipe(x => x >= 0 ? x : 0);
             Console.SetCursorPosition(left, Console.CursorTop);
             return this;
         }
@@ -272,13 +275,13 @@ namespace Ink
             var ask = new ConAsk(this, question);
             ask.Resolve(answer =>
             {
-                if (new[] { "y", "yes", "Y", "YES", "Yes" }.Contains(answer.Value))
+                if (_yesWords.Contains(answer.Value))
                 {
                     answer.Action = AskAction.Accept;
                     answer.Value = "Yes";
                     _value = true;
                 }
-                else if (new[] { "n", "no", "N", "NO", "No" }.Contains(answer.Value))
+                else if (_noWords.Contains(answer.Value))
                 {
                     answer.Action = AskAction.Accept;
                     answer.Value = "No";
@@ -302,7 +305,7 @@ namespace Ink
         }
         public ConOut PressContinue(ConsoleModifiers modifiers, ConsoleKey key)
         {
-            while (!Console.ReadKey(true).For(consoleKey => consoleKey.Key == key && consoleKey.Modifiers == modifiers)) ;
+            while (!Console.ReadKey(true).Pipe(consoleKey => consoleKey.Key == key && consoleKey.Modifiers == modifiers)) ;
             return this;
         }
 

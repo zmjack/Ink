@@ -1,20 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29509.3
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9EF9B0A8-C0B9-46F3-8A4C-C321E54C4B1F}"
 	ProjectSection(SolutionItems) = preProject
 		push.cmd = push.cmd
-		README-CN.md = README-CN.md
 		README.md = README.md
+		README.cn.md = README.cn.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ink", "Ink\Ink.csproj", "{4B765787-86D0-4DF4-BFF2-12F625377515}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ink.Test", "Ink.Test\Ink.Test.csproj", "{B0A0D740-8617-4CFD-B50B-240173B93469}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InkApp", "InkApp\InkApp.csproj", "{80964A14-319B-4812-A589-97EC621F54AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InkApp", "InkApp\InkApp.csproj", "{80964A14-319B-4812-A589-97EC621F54AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
