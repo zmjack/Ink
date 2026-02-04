@@ -1,36 +1,36 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net35;net451;net46;net5.0;net6.0;net7.0;net8.0</TargetFrameworks>
-    <Description>Class libraries for formatting console output, such as tables, even interactively.</Description>
-    <Authors>zmjack</Authors>
-    <PackageProjectUrl>https://github.com/zmjack/Ink</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/zmjack/Ink</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <PackageTags>Console Echo</PackageTags>
-    <Copyright>Copyright © dawnx.net 2019-2020</Copyright>
-    <Version>0.13.0</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>Ink</PackageId>
-    <Product>Ink</Product>
-    <LangVersion>preview</LangVersion>
-    <PackageIcon>ink.png</PackageIcon>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0;net46;net451;net35</TargetFrameworks>
+		<Description>Class libraries for formatting console output, such as tables, even interactively.</Description>
+		<Authors>zmjack</Authors>
+		<PackageProjectUrl>https://github.com/zmjack/Ink</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/zmjack/Ink</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+		<PackageTags>Console Echo</PackageTags>
+		<Copyright>Copyright © nstandard.net 2019</Copyright>
+		<Version>0.14.0</Version>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>Ink</PackageId>
+		<Product>Ink</Product>
+		<LangVersion>13</LangVersion>
+		<PackageIcon>ink.png</PackageIcon>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\ink.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="..\LICENSE.md">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\ink.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="..\LICENSE.md">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="NStandard" Version="0.82.0.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="NStandard" Version="0.100.0" />
+	</ItemGroup>
 
 </Project>
